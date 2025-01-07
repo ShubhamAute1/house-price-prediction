@@ -39,7 +39,7 @@ jobs:
       run: |
         pip install -r requirements.txt
 
-    # Debug paths and check for necessary files
+    # Debug paths and check for necessary file
     - name: Debug paths and file existence
       run: |
         echo "Current working directory: $(pwd)"

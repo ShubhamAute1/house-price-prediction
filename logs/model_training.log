@@ -41,3 +41,5 @@
 2025-01-02 11:46:13,172 - INFO - RMSE calculated: 50246.04, Confidence Interval: (47114.83759670988, 53377.23627217838).
 2025-01-02 11:46:13,199 - INFO - Prediction made for user input: [[-1.2223e+02  3.7880e+01  3.0000e+01  5.0000e+02  2.4900e+02  9.7030e+03
    3.4000e+03  8.5000e-01  3.0000e+00]], Predicted Value: $285,618.03
+2025-01-06 16:24:00,176 - INFO - Streamlit application started.
+2025-01-07 11:59:05,501 - INFO - Streamlit application started.

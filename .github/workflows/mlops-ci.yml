@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -39,7 +39,7 @@ jobs:
       run: |
         pip install -r requirements.txt
 
-    # Debug paths and check for necessary file
+    # Debug paths and check for necessary files
     - name: Debug paths and file existence
       run: |
         echo "Current working directory: $(pwd)"
@@ -48,9 +48,35 @@ jobs:
         echo "Checking if data file exists:"
         test -f data/housing.csv && echo "data/housing.csv exists" || echo "data/housing.csv is missing"
         echo "Checking if model file exists:"
-        test -f model/housing_price_model.joblib && echo "model/housing_price_model.joblib exists" || echo "model file is missing"
+        test -f model/housing_price_model.joblib && echo "model file exists" || echo "model file is missing"
 
     # Run tests
     - name: Run tests
       run: pytest tests --disable-warnings
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    needs: test  # Run only if the "test" job succeeds
+
+    steps:
+    # Checkout code
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Log in to Docker Hub
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.shubhamaute1 }}
+        password: ${{ secrets.Shubh@123 }}
+
+    # Build Docker image
+    - name: Build Docker image
+      run: |
+        docker build -t shubhamaute1/housepriceprediction:latest .
+
+    # Push Docker image to Docker Hub
+    - name: Push Docker image
+      run: |
+        docker push shubhamaute1/housepriceprediction:latest
 
